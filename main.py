@@ -1,39 +1,33 @@
-from datetime import datetime, date
-from collections import defaultdict
+import function
 
 
-def get_birthdays_per_week(users):
-    current_date = datetime.today().date()
-    list_birthdays_next_week = defaultdict(list)
-    for user in users:
-        name = user["name"]
-        birthday = user["birthday"].date()  # Конвертуємо до типу date*
-        birthday_this_year = birthday.replace(
-            year=current_date.year
-        )  # замінюємо рік на актуальний в датах народження
-        delta_days = (
-            birthday_this_year - current_date
-        ).days  # визначаємо різницю у кількостів днів між сьогодні та датою народження
-        if delta_days < 7:
-            day_of_week = user["birthday"].strftime(
-                "%A"
-            )  # присвоюємо зміній day_of_week день тижня
-            if (
-                day_of_week == "Saturday" or day_of_week == "Sunday"
-            ):  # по суботах та неділях переносимо на понеділок
-                list_birthdays_next_week["Monday"].append(
-                    name
-                )  # переносимо name, з вихідних на понеділок
-            else:
-                list_birthdays_next_week[day_of_week].append(
-                    name
-                )  # решта днів крім вихідних та записуємо туди імя
-    finish_list = "\n".join(
-        f"{day}: {', '.join(names)}" for day, names in list_birthdays_next_week.items()
-    )  # переводимо словник у рядки: день тижня та додаємо name
+def main():
+    contacts = {}
+    print("Welcome to the assistant bot!")
+    while True:
+        user_input = input("Enter a command: ")
+        command, *args = function.parse_input(user_input)
 
-    # повертаємо результат
-    return finish_list
+        if command in ["close", "exit", "good bye"]:
+            print("Good bye!")
+            break
+        elif command == "hello":
+            print("How can I help you?")
+            continue
+        elif command == "phone":
+            print(function.show_phone(args, contacts))
+            continue
+        elif command == "all":
+            print(function.show_all(args, contacts))
+            continue
+        if command not in ("add", "change"):
+            print("Invalid command.")
+
+        if command == "add":
+            print(function.add_contact(args, contacts))
+        elif command == "change":
+            print(function.change_contact(args, contacts))
 
 
-# Author Volodymyr Chub
+if __name__ == "__main__":
+    main()
