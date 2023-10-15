@@ -2,10 +2,10 @@ from datetime import datetime, date
 from collections import defaultdict
 
 users = [
-    {"name": "Bill Gates", "birthday": datetime(1955, 10, 16)},
-    {"name": "Mark Koll", "birthday": datetime(1985, 10, 14)},
-    {"name": "Marie Bauer", "birthday": datetime(1990, 10, 17)},
-    {"name": "Alex Graf", "birthday": datetime(1978, 10, 19)},
+    {"name": "Bill Gates", "birthday": datetime(1955, 10, 15)},
+    {"name": "Mark Koll", "birthday": datetime(1985, 10, 17)},
+    {"name": "Marie Bauer", "birthday": datetime(1990, 10, 21)},
+    {"name": "Alex Graf", "birthday": datetime(1978, 10, 18)},
 ]
 
 
@@ -32,6 +32,4 @@ def get_birthdays_per_week(users):
 
 if __name__ == "__main__":
     print("Get birthdays for next 7 days!")
-
-
-print(get_birthdays_per_week(users))
+    get_birthdays_per_week(users)

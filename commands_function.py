@@ -44,7 +44,3 @@ def show_all(args, contacts):
     if len(args) != 0:
         return "Not right command all!"
     return contacts
-
-
-if __name__ == "__main__":
-    print("Functions for the assistant bot!")

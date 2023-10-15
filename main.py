@@ -1,4 +1,4 @@
-import function
+import commands_function
 
 
 def main():
@@ -6,20 +6,20 @@ def main():
     print("Welcome to the assistant bot!")
     while True:
         user_input = input("Enter a command: ")
-        command, *args = function.parse_input(user_input)
+        command, *args = commands_function.parse_input(user_input)
         if command in ["close", "exit", "bye"]:
             print("Good bye!")
             break
         elif command == "hello":
             print("How can I help you?")
         elif command == "phone":
-            print(function.show_phone(args, contacts))
+            print(commands_function.show_phone(args, contacts))
         elif command == "all":
-            print(function.show_all(args, contacts))
+            print(commands_function.show_all(args, contacts))
         elif command == "add":
-            print(function.add_contact(args, contacts))
+            print(commands_function.add_contact(args, contacts))
         elif command == "change":
-            print(function.change_contact(args, contacts))
+            print(commands_function.change_contact(args, contacts))
         else:
             print("Invalid command.")
 
